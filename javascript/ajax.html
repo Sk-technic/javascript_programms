@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="root">
+        <input value="" id="user" type="text" placeholder="enter username..">
+       <button onclick="datafetch()">
+        fetch
+       </button>
+
+       <br>
+       <div id="content">
+        <p>hi <b id="usr"></b></p>
+       </div>
+       <div id="bio">
+
+       </div>
+       <div id="photo" >
+
+       </div>
+    </div>
+</body>
+<script>
+
+
+function datafetch(){
+      const username = document.querySelector('#user').value;
+       const xhr = new XMLHttpRequest()
+
+       const url = `https://api.github.com/users/${username}`;
+
+        xhr.open("GET",url,true)
+
+        xhr.onreadystatechange = function(){
+
+            if(xhr.readyState === 4){
+                if(xhr.status == 200){
+                   console.log("data fetch successfully..")
+                   const data = JSON.parse(xhr.responseText)
+                   const username2 = data["name"]
+                   document.getElementById('usr').innerHTML=username2
+                   document.getElementById('bio').innerHTML=data["bio"]
+                   const link = data["avatar_url"]
+                   const photo = document.getElementById('photo')
+                   const image = document.createElement('img')
+                   image.setAttribute('src',`${link}`)
+                   image.style.width="100px"
+                   photo.append(image)
+                }
+                
+            }
+        }
+        xhr.send();
+}
+
+
+
+
+
+//function fetchGitHubUser() {
+//
+//    const xhr = new XMLHttpRequest();
+//
+//
+//    const url = `https://api.github.com/users/sk-technic`;
+//
+// 
+//    xhr.open('GET', url, true);
+//
+//  
+//    xhr.onreadystatechange = function () {
+//        if (xhr.readyState === 4) { 
+//            if (xhr.status === 200) { 
+//                const userData = JSON.parse(xhr.responseText);
+//                console.log('User Data:', userData);
+//            } else {
+//                console.error('Error:', xhr.status, xhr.statusText);
+//            }
+//        }
+//    };
+//
+//
+//    xhr.send();
+//}
+//
+//
+//fetchGitHubUser(); 
+
+</script>
+</html>
