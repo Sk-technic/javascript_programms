@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-16">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Events</h1>
+    <div id="main">
+        <ul id="box">
+           <li id="li1"><a href="#">Monday</a></li>
+           <li id="li2"><a href="#">Tuesday</a></li>
+           <li id="li3"><a href="#">Wednesday</a></li>
+           <li id="li4"><a href="#">Thrusday</a></li>
+        </ul>
+    </div>
+    <input type="checkbox" id="id-checkbox">click
+    <p id="output-box"></p>
+</body>
+<script>
+      //  let l2 = document.getElementById('li2').addEventListener('click',
+      //  function(e){
+      //      console.log(e.target)
+      //      
+      //  },false)
+        //let main = document.getElementById('box').addEventListener('click',function(){
+        //    console.log()
+        //})
+        const main=document.getElementById('box').lastElementChild.textContent
+        console.log(main)
+       // document.getElementById('box').addEventListener('click',
+       // function(e){
+       //     console.log("clicked by ul")
+       // },false)
+       const checkbox = document.querySelector("#id-checkbox");
+
+checkbox.addEventListener("click", checkboxClick, false);
+
+function checkboxClick(event) {
+  //event.preventDefault();
+
+  const warn = "preventDefault() won't let you check this!\n";
+  document.getElementById("output-box").innerText += warn;
+  event.preventDefault();
+}
+
+</script>
+</html>
